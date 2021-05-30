@@ -1,30 +1,34 @@
 const express = require('express');
+const mongoose = require('mongoose');
+
 const ejs = require('ejs');
 const path = require('path');
 
-const app = express();
+const Post = require('./models/Post');
 
-PORT = 3000;
+const app = express();
+const PORT = 3000;
+
+// connected Db
+mongoose.connect('mongodb://localhost/cleanblog-db', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+// Routers
+const postRouters = require('./routes/postRoute');
+const { Mongoose } = require('mongoose');
 
 // TEMPLATE ENGINE
 app.set('view engine', 'ejs');
 
 // MIDDLEWARES
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // ROUTERSS
-app.get('/', (req, res) => {
-  res.render('index');
-});
-app.get('/about', (req, res) => {
-  res.render('about');
-});
-app.get('/post', (req, res) => {
-  res.render('post');
-});
-app.get('/add-post', (req, res) => {
-  res.render('add_post');
-});
+app.use(postRouters);
 
 app.listen(PORT, () => {
   console.log(`Listining port ${PORT}`);
