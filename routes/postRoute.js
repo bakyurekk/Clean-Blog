@@ -8,9 +8,19 @@ router.get('/', async (req, res) => {
     posts: posts,
   });
 });
+router.get('/posts/:id', async (req, res) => {
+  // console.log(req.params.id)
+  // res.render('about');
+  const post = await Post.findById(req.params.id);
+  res.render('post', {
+    post,
+  });
+});
+
 router.get('/about', (req, res) => {
   res.render('about');
 });
+
 router.get('/post', (req, res) => {
   res.render('post');
 });
