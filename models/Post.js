@@ -11,6 +11,6 @@ const PostSchema = new Schema({
   }
 });
 
-const Post = mongoose.model('Photo', PostSchema);
+const Post = mongoose.model('Post', PostSchema);
 
 module.exports = Post;
