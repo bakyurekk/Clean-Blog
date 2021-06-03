@@ -8,15 +8,22 @@ const methodOverride = require('method-override');
 
 const app = express();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 const DB_CONNECT = process.env.DB_CONNECT;
 
 // connected Db
-mongoose.connect(DB_CONNECT, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-});
+mongoose
+  .connect(DB_CONNECT, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  })
+  .then(() => {
+    console.log('DB CONNECTED!');
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 // Routers
 const postRouters = require('./routes/postRoute');

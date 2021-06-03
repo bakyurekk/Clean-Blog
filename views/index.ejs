@@ -33,7 +33,26 @@
           </div>
         </div>
       </div>
+
+      <nav class="">
+        <% if (pages > 0) { %>
+          <ul class="pagination">
+            <% for (i=1; i <=pages; i++) { %>
+              <%   if (i == current) { %>
+                <li class="page-item  active"><a href="/?page=<%= i %>" class="page-link rounded-pill  mx-2 px-3"><%= i %></a></li>
+              <% } else if (i < pages) { %>
+                <li class="page-item "><a href="/?page=<%= i %>" class="page-link rounded-pill mx-2 px-3"><%= i %></a></li>
+              <%  } else { %>
+                <li class="page-item "><a href="/?page=<%= i %>" class="page-link rounded-pill mx-2 px-3"><i class="fas fa-chevron-circle-right"></i></a></li>
+              <%  } %>
+            <%  } %>
+          </ul>
+        <% } %>
+        </nav>
+
+
     </div>
+
 
     <hr />
 
