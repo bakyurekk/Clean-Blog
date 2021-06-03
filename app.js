@@ -9,11 +9,11 @@ const methodOverride = require('method-override');
 const app = express();
 
 const PORT = process.env.PORT || 5000;
-
+const DB_CONNECT = process.env.DB_CONNECT;
 // connected Db
 mongoose
   .connect(
-    'mongodb+srv://bakyurekk:Ba3026933@cluster0.quzig.mongodb.net/clean-blog-db?retryWrites=true&w=majority',
+    DB_CONNECT,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
