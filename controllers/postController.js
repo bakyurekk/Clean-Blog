@@ -11,7 +11,8 @@ exports.getAllPost = async (req, res) => {
     .sort('-dataCreated')
     .skip((page - 1) * postPerPage)
     .limit(postPerPage);
-  res.render('index', {
+  res.status(200).render('index', {
+    pageTitle: 'Index',
     posts: posts,
     current: page,
     pages: Math.ceil(totalPosts / postPerPage),
