@@ -1,6 +1,5 @@
 <%- include('partials/_header.ejs') %>
 
-
 <body>
   <!-- Navigation -->
   <%- include('partials/_navigation.ejs') %>
@@ -23,7 +22,6 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-
         <!-- POST -->
         <%- include('partials/_post.ejs') -%>
         <!-- Pager -->
@@ -35,30 +33,35 @@
 
     <nav class="">
       <% if (pages > 0) { %>
-        <ul class="pagination">
-          <% for (i=1; i <=pages; i++) { %>
-            <%   if (i == current) { %>
-              <li class="page-item  active"><a href="/?page=<%= i %>" class="page-link rounded-pill  mx-2 px-3"><%= i %></a></li>
-            <% } else if (i < pages) { %>
-              <li class="page-item "><a href="/?page=<%= i %>" class="page-link rounded-pill mx-2 px-3"><%= i %></a></li>
-            <%  } else { %>
-              <li class="page-item "><a href="/?page=<%= i %>" class="page-link rounded-pill mx-2 px-3"><i class="fas fa-chevron-circle-right"></i></a></li>
-            <%  } %>
-          <%  } %>
-        </ul>
+      <ul class="pagination">
+        <% for (i=1; i <=pages; i++) { %> <% if (i == current) { %>
+        <li class="page-item active">
+          <a href="/?page=<%= i %>" class="page-link rounded-pill mx-2 px-3"
+            ><%= i %></a
+          >
+        </li>
+        <% } else if (i < pages) { %>
+        <li class="page-item">
+          <a href="/?page=<%= i %>" class="page-link rounded-pill mx-2 px-3"
+            ><%= i %></a
+          >
+        </li>
+        <% } else { %>
+        <li class="page-item">
+          <a href="/?page=<%= i %>" class="page-link rounded-pill mx-2 px-3"
+            ><i class="fas fa-chevron-circle-right"></i
+          ></a>
+        </li>
+        <% } %> <% } %>
+      </ul>
       <% } %>
-      </nav>
-
-
+    </nav>
   </div>
-
 
   <hr />
 
   <!-- Footer -->
-  <footer>
-    <%- include('partials/_footer.ejs') -%>
-  </footer>
+  <footer><%- include('partials/_footer.ejs') -%></footer>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

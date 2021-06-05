@@ -17,17 +17,12 @@ exports.getAllPost = async (req, res) => {
     current: page,
     pages: Math.ceil(totalPosts / postPerPage),
   });
-
-  // console.log(req.query);
-  // const posts = await Post.find({}).sort('-dataCreated');
-  // res.render('index', {
-  //   posts: posts,
-  // });
 };
 
 exports.getPost = async (req, res) => {
   const post = await Post.findById(req.params.id);
   res.render('post', {
+    pageTitle: 'Post',
     post,
   });
 };
