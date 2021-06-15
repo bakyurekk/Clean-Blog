@@ -48,6 +48,19 @@ exports.createPost = async (req, res) => {
 
 exports.updatePost = async (req, res) => {
   const post = await Post.findOne({ _id: req.params.id });
+  const oldPhoto = post.image.slice(9);
+
+  if (req.files) {
+    const newPhoto = req.files.image;
+    let delImage = __dirname + '/../public/uploads/' + oldPhoto;
+    fs.unlinkSync(delImage);
+    let uploadPath = __dirname + '/../public/uploads/' + newPhoto.name;
+    newPhoto.mv(uploadPath);
+    post.image = '/uploads/' + newPhoto.name;
+  } else {
+    post.image = '/uploads/' + newPhoto.name;
+  }
+
   post.title = req.body.title;
   post.detail = req.body.detail;
   post.save();
